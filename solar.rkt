@@ -1,8 +1,8 @@
 #lang racket/base
 (require gregor
-         "./lib/time-lib.rkt"
-         "./lib/orbit-lib.rkt"
-         "./lib/coordinates-lib.rkt")
+         "./calc-libs/time-lib.rkt"
+         "./calc-libs/orbit-lib.rkt"
+         "./calc-libs/coordinates-lib.rkt")
 (provide get-solar-data)
 
 ; These constants are with respect to the epoch of J2000

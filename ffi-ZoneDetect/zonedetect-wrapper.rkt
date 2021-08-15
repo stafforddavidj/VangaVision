@@ -4,7 +4,7 @@
 ; This is the only part of this I actually use
 (provide ZD-timezone-lookup)
 
-(define-ffi-definer define-zone (ffi-lib "./lib/ZoneDetect"))
+(define-ffi-definer define-zone (ffi-lib "./ffi-ZoneDetect/ZoneDetect"))
 
 ; Objects and data structures
 (define _ZD-pointer (_cpointer `ZoneDetect))
@@ -35,7 +35,7 @@
     (printf "ZD error: ~a ~x" (ZDGetErrorString error-ZD) error-native)))
 
   ; Build path to database and open it
-  (define lib-path (path->complete-path (string->path "./lib/timezone21.bin")))
+  (define lib-path (path->complete-path (string->path "./ffi-ZoneDetect/timezone21.bin")))
   (define zone-detect (ZDOpenDatabase lib-path))
   ; Perform quick lookup of timezone
   (define timezone (ZDHelperSimpleLookupString zone-detect lat long))

@@ -2,7 +2,7 @@
 (require gregor
          "solar.rkt"
          "lunar.rkt"
-         "./lib/zonedetect-wrapper.rkt")
+         "./ffi-ZoneDetect/zonedetect-wrapper.rkt")
 
 (define (get-arg index)
   (vector-ref (current-command-line-arguments) index))
@@ -17,13 +17,12 @@
                  (raise-argument-error 'hash-ref* "hash-has-key?" current-key)))]
           [else (raise-argument-error 'hash-ref* "hash?" table)])))
 
-(define (vanga-capture local-time timezone latitude longitude)
-  ; Find timezone and local time from parsed values
+(define (vanga-capture local-time latitude longitude)
   (let ([solar-data (get-solar-data local-time latitude longitude)])
     (hash
       'Geolocation (cons latitude longitude)
-      'Timezone timezone
-      'LocalTime local-time
+      'Timezone (->timezone local-time)
+      'LocalTime (->datetime/local local-time)
       'SolarData solar-data
       'LunarData (get-lunar-data local-time solar-data latitude longitude)
       ; solar system planet locations
@@ -59,12 +58,11 @@
                           "yyyy-MM-dd'T'HH:mm:ss"
                           #:resolve-offset resolve-offset/post))))
 
-        (define test-moment (vanga-capture local-time timezone latitude longitude))
+        (define test-moment (vanga-capture local-time latitude longitude))
         (define (debug-output ref-input)
           (let ([ref-list (if (list? ref-input) ref-input (cons ref-input '()))])
                (display (string-append 
-                          (symbol->string (last ref-list)) 
-                          ": "))
+                          (symbol->string (last ref-list)) ": "))
                (displayln (hash-ref* test-moment ref-list))))
         ; Print values of times derived from calculations
         (debug-output 'Geolocation)
