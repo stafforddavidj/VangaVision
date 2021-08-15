@@ -1,0 +1,1 @@
+("8.1" ta6nt ("96423de5d8a4a66b285494605bff9ce763a29a6c" . "d644d0ea99253ef7f6cd92b5ce46a639eb0828eb") #"D:\\Racket\\astro\\time-lib.rkt" (collects #"errortrace" #"errortrace-key.rkt") (collects #"gregor" #"main.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))
