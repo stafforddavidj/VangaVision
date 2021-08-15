@@ -1,4 +1,0 @@
-﻿  zonedetect.c
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winbase.h(9531,5): warning C5105: macro expansion producing 'defined' has undefined behavior
-     Creating library D:\Racket\Astro\ZoneDetect\vs15\x64\Debug\ZoneDetect.lib and object D:\Racket\Astro\ZoneDetect\vs15\x64\Debug\ZoneDetect.exp
-  ZoneDetect.vcxproj -> D:\Racket\Astro\ZoneDetect\vs15\x64\Debug\ZoneDetect.dll
