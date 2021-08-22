@@ -1,2 +1,2 @@
 # VangaVision
- Calculate the location of celestial bodies at a given location and time
+ Calculate the coordinates of celestial bodies at a given geolocation and time
