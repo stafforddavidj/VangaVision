@@ -55,12 +55,12 @@
                                                       [(and (positive? atan-y) (negative? atan-x)) 180]
                                                       [(and (negative? atan-y) (positive? atan-x)) 360]
                                                       [(and (negative? atan-y) (negative? atan-x)) 180])])
-                                  (range-normalize (+ fix-asc-node 
+                                  (range-normalize (+ fix-asc-node
                                                       (+ (radians->degrees (atan (/ (degrees->radians atan-y)
                                                                                     (degrees->radians atan-x))))
                                                          atan-adjust))
                                                    360))]
-           [ecliptic-lat (let ([asin-x (sin (- (degrees->radians long-fix2) 
+           [ecliptic-lat (let ([asin-x (sin (- (degrees->radians long-fix2)
                                                (degrees->radians fix-asc-node)))]
                                [asin-y (sin (degrees->radians (hash-ref orbital-elements 'i)))])
                               (radians->degrees (asin (* asin-x asin-y))))])
@@ -70,20 +70,20 @@
 ; Lunar calculations are unique due to corrections being based on
 ; translating from a geocentric model rather than a heliocentric one
 (define (get-lunar-data localtime solar-data latitude longitude)
-  (letrec ([ecliptic-coords (let-values 
-                             ([(coords node Ca) 
+  (letrec ([ecliptic-coords (let-values
+                             ([(coords node Ca)
                                (get-ecliptic-coords localtime solar-data latitude longitude)]) coords)]
            [equatorial-coords (ecliptic->equatorial (car ecliptic-coords) (cdr ecliptic-coords))]
            [eq-hour (- (utc->lst (->datetime/utc localtime) longitude) (cdr equatorial-coords))]
-           [rise/set (letrec-values 
-                       ([(ecliptic1 node Ca) 
+           [rise/set (letrec-values
+                       ([(ecliptic1 node Ca)
                            (get-ecliptic-coords (->date localtime) solar-data latitude longitude)]
                         [(equatorial1) (ecliptic->equatorial (car ecliptic1) (cdr ecliptic1))]
                         [(S/R-set1) (get-rise/set (car equatorial1) (cdr equatorial1) latitude)]
                         [(ecliptic-lat2) (+ (car ecliptic1)
                                             (* 0.05 12 (cos (- (degrees->radians (cdr ecliptic1))
                                                                (degrees->radians node)))))]
-                        [(ecliptic-long2) (+ (cdr ecliptic1) 
+                        [(ecliptic-long2) (+ (cdr ecliptic1)
                                              (* 12 (+ 0.55 (* 0.06 (cos (degrees->radians Ca))))))]
                         [(equatorial2) (ecliptic->equatorial ecliptic-lat2 ecliptic-long2)]
                         [(S/R-set2) (get-rise/set (car equatorial2) (cdr equatorial2) latitude)]

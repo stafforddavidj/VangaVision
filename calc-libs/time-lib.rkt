@@ -1,7 +1,7 @@
 #lang racket/base
 (require gregor)
 (provide range-normalize time->day% date->jdn
-         utc->gst gst->utc gst->lst lst->gst 
+         utc->gst gst->utc gst->lst lst->gst
          utc->lst lst->utc utc->lct lst->lct)
 
 ; Used to normalize times to range of [0, mod] (racket modulo only supports ints base)
@@ -12,7 +12,7 @@
 
 ; Converts between time and fractions of a day
 (define (time->day% hours minutes seconds)
-  (/ (+ hours (/ (+ minutes(/ seconds 60)) 60)) 24))
+  (/ (+ hours (/ (+ minutes (/ seconds 60)) 60)) 24))
 
 ; Calculate Julian day from date (use decimal days for times other than 0h)
 ; Ch. 3.6, pp. 41-42

@@ -31,8 +31,8 @@
 ; Function that performs all the operations necessary for a timezone lookup
 (define (ZD-timezone-lookup lat long)
   (ZDSetErrorHandler
-   (lambda (error-ZD error-native)
-    (printf "ZD error: ~a ~x" (ZDGetErrorString error-ZD) error-native)))
+    (lambda (error-ZD error-native)
+      (printf "ZD error: ~a ~x" (ZDGetErrorString error-ZD) error-native)))
 
   ; Build path to database and open it
   (define lib-path (path->complete-path (string->path "./ffi-ZoneDetect/timezone21.bin")))

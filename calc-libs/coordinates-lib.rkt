@@ -29,8 +29,8 @@
                               (* (cos eq-dec) (cos eq-lat) (cos eq-hour))))]
            [azimuth (acos (/ (- (sin eq-dec) (* (sin eq-lat) (sin altitude)))
                              (* (cos eq-lat) (cos altitude))))])
-          (cons (radians->degrees altitude) 
-                (if (< (sin eq-hour) 0) 
+          (cons (radians->degrees altitude)
+                (if (< (sin eq-hour) 0)
                     (radians->degrees azimuth)
                     (- 360 (radians->degrees azimuth))))))
 
