@@ -2,8 +2,8 @@
 (require json
          gregor
          racket/pretty
-         "test-json.rkt"
-         "vanga-vision.rkt")
+         "vanga-vision.rkt"
+         "./solar-libs/test-json.rkt")
 (provide vanga-json)
 
 ; Gregor datetimes and cons pairs need to be changed to 
@@ -28,6 +28,5 @@
       #:longitude (hash-ref json-block 'Longitude))])
     (serialize output-block)))
 
-(define json-test (vanga-json (jsexpr->bytes test-json)))
-
-(module+ main (pretty-display json-test))
+(module+ main 
+  (pretty-display (vanga-json (jsexpr->bytes test-json))))

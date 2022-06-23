@@ -1,9 +1,9 @@
 #lang racket
 (require racket/pretty
          gregor
-         "solar.rkt"
-         "lunar.rkt"
-         "test-json.rkt"
+         "./solar-libs/solar.rkt"
+         "./solar-libs/lunar.rkt"
+         "./solar-libs/test-json.rkt"
          "./ffi-ZoneDetect/zonedetect-wrapper.rkt")
 (provide vanga-capture)
 
