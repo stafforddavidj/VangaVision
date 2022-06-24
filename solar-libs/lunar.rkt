@@ -77,7 +77,7 @@
            [eq-hour (- (utc->lst (->datetime/utc localtime) longitude) (cdr equatorial-coords))]
            [rise/set (letrec-values
                        ([(ecliptic1 node Ca)
-                           (get-ecliptic-coords (->date localtime) solar-data latitude longitude)]
+                         (get-ecliptic-coords (->date localtime) solar-data latitude longitude)]
                         [(equatorial1) (ecliptic->equatorial (car ecliptic1) (cdr ecliptic1))]
                         [(S/R-set1) (get-rise/set (car equatorial1) (cdr equatorial1) latitude)]
                         [(ecliptic-lat2) (+ (car ecliptic1)
@@ -90,9 +90,9 @@
                         [(S/R-interpolate) (lambda (ST1 ST2) (/ (* 12.03 ST1)
                                                                 (- (+ 12.03 ST1) ST2)))])
                        (cons (lst->lct (S/R-interpolate (car S/R-set1) (car S/R-set2))
-                             localtime longitude)
+                              localtime longitude)
                              (lst->lct (S/R-interpolate (cdr S/R-set1) (cdr S/R-set2))
-                             localtime longitude)))])
+                              localtime longitude)))])
           (hash
             'Ecliptic ecliptic-coords
             'Equatorial equatorial-coords

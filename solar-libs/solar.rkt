@@ -8,12 +8,12 @@
 ; These constants are with respect to the epoch of J2000
 (define orbital-elements
   (hash
-   'e 0.016708 ; eccentricity of orbit
-   'a0 1.495985e08 ; length of orbital semi-major axis (km)
-   'theta0 0.0533128 ; angular diameter when a distance of a0 from earth (degrees)
-   'epsilon0 280.466069 ; ecliptic longitude at epoch (degrees)
-   'w0 282.938346 ; ecliptic longitude at perigee at epoch (degrees)
-   'Tp 1)) ; orbit time in tropical years (1 because it's the earth-sun orbit)
+    'e 0.016708 ; eccentricity of orbit
+    'a0 1.495985e08 ; length of orbital semi-major axis (km)
+    'theta0 0.533128 ; angular diameter when a distance of a0 from earth (degrees)
+    'epsilon0 280.466069 ; ecliptic longitude at epoch (degrees)
+    'w0 282.938346 ; ecliptic longitude at perigee at epoch (degrees)
+    'Tp 1)) ; orbit time in tropical years (1 because it's the earth-sun orbit)
 
 ; First get position at input time. The calculation for orbit is used to find
 ; the position of the sun in the sky. Even though the sun revolves around the

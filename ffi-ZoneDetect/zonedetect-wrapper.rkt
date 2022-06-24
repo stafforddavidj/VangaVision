@@ -1,5 +1,6 @@
 #lang racket/base
-(require ffi/unsafe
+(require racket/format
+         ffi/unsafe
          ffi/unsafe/define)
 ; This is the only part of this I actually use
 (provide ZD-timezone-lookup)
@@ -32,7 +33,8 @@
 (define (ZD-timezone-lookup lat long)
   (ZDSetErrorHandler
     (lambda (error-ZD error-native)
-      (printf "ZD error: ~a ~x" (ZDGetErrorString error-ZD) error-native)))
+      (printf "~n  ZoneDetect exception: ~a ~n  System: (0x~a)~n~n"
+        (ZDGetErrorString error-ZD) (~r error-native #:min-width 2 #:pad-string "0"))))
 
   ; Build path to database and open it
   (define lib-path (path->complete-path (string->path "./ffi-ZoneDetect/timezone21.bin")))
